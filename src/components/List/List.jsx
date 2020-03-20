@@ -67,10 +67,10 @@ const List = () => {
     return toDoList.map(item => {
       return (
         <div className={styles.listItem}>
+          <img src={item.ImgUrl} alt="image thumbnail" />
           <h2>{item.Title}</h2>
           <p>{item.Date}</p>
-          <img src={item.ImgUrl} alt="image thumbnail" />
-          <button onClick={deleteFromDb}>Delete</button>
+          <button onClick={() => deleteFromDb(item)}>Delete</button>
         </div>
       );
     });
@@ -79,27 +79,29 @@ const List = () => {
   return (
     <section className={styles.list}>
       <h2>Add new item to list</h2>
-      <input
-        type="text"
-        placeholder="Title"
-        onInput={event => {
-          setNewItem({ ...newItem, Title: event.target.value });
-        }}
-      />
-      <input
-        type="text"
-        placeholder="image url"
-        onInput={event => {
-          setNewItem({ ...newItem, ImgUrl: event.target.value });
-        }}
-      />
-      <input
-        type="text"
-        placeholder="date"
-        onInput={event => {
-          setNewItem({ ...newItem, Date: event.target.value });
-        }}
-      />
+      <div className={styles.inputContainer}>
+        <input
+          type="text"
+          placeholder="Title"
+          onInput={event => {
+            setNewItem({ ...newItem, Title: event.target.value });
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Image url"
+          onInput={event => {
+            setNewItem({ ...newItem, ImgUrl: event.target.value });
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Creation date"
+          onInput={event => {
+            setNewItem({ ...newItem, Date: event.target.value });
+          }}
+        />
+      </div>
       <button onClick={addToDb}>Add</button>
       {displayInJsx()}
     </section>

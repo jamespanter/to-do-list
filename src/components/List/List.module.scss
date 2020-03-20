@@ -1,21 +1,51 @@
 .list {
   background-color: lightcoral;
+  border-radius: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .listItem {
-    border: solid 1px black;
     text-align: center;
     min-height: 200px;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
 
     h2 {
       text-transform: uppercase;
+      font-size: 48px;
+    }
+
+    img {
+      max-width: 200px;
+      max-height: 200px;
     }
   }
 
-  input {
-    height: 30px;
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      height: 30px;
+      width: 190px;
+    }
   }
 
   button {
     padding: 5px 20px;
+    height: 30px;
+    width: 90px;
+
+    &:hover {
+      background-color: bisque;
+    }
   }
 }

@@ -1,0 +1,21 @@
+.list {
+  background-color: lightcoral;
+
+  .listItem {
+    border: solid 1px black;
+    text-align: center;
+    min-height: 200px;
+
+    h2 {
+      text-transform: uppercase;
+    }
+  }
+
+  input {
+    height: 30px;
+  }
+
+  button {
+    padding: 5px 20px;
+  }
+}

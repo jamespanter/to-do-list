@@ -17,7 +17,7 @@ const List = () => {
       .doc("0qy4ME2XQdSPstRPSlxL")
       .get()
       .then(doc => {
-        const retrievedItem = doc.data().toDo;
+        const retrievedItem = doc.data().toDoList;
         console.log(retrievedItem);
         updateList(retrievedItem);
       })
@@ -32,7 +32,7 @@ const List = () => {
       .collection("users")
       .doc("0qy4ME2XQdSPstRPSlxL")
       .set({
-        toDo: newItems
+        toDoList: newItems
       })
       .then(() => {
         fetchToDoList();
@@ -42,22 +42,43 @@ const List = () => {
       });
   };
 
-  const createNewItem = () => {};
+  const deleteFromDb = item => {
+    const newArray = [...toDoList];
+    const position = newArray.indexOf(item);
+    newArray.splice(position, 1);
+
+    const newDoc = {
+      toDoList: newArray
+    };
+
+    firestore
+      .collection("users")
+      .doc("0qy4ME2XQdSPstRPSlxL")
+      .set(newDoc)
+      .then(() => {
+        fetchToDoList();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const displayInJsx = () => {
     return toDoList.map(item => {
       return (
-        <div>
+        <div className={styles.listItem}>
           <h2>{item.Title}</h2>
           <p>{item.Date}</p>
           <img src={item.ImgUrl} alt="image thumbnail" />
+          <button onClick={deleteFromDb}>Delete</button>
         </div>
       );
     });
   };
 
   return (
-    <>
+    <section className={styles.list}>
+      <h2>Add new item to list</h2>
       <input
         type="text"
         placeholder="Title"
@@ -81,7 +102,7 @@ const List = () => {
       />
       <button onClick={addToDb}>Add</button>
       {displayInJsx()}
-    </>
+    </section>
   );
 };
 

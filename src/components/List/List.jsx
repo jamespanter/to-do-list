@@ -80,6 +80,7 @@ const List = () => {
     <section className={styles.list}>
       <h2>Add new item to list</h2>
       <div className={styles.inputContainer}>
+        <h3>Title</h3>
         <input
           type="text"
           placeholder="Title"
@@ -87,6 +88,7 @@ const List = () => {
             setNewItem({ ...newItem, Title: event.target.value });
           }}
         />
+        <h3>Image url</h3>
         <input
           type="text"
           placeholder="Image url"
@@ -94,8 +96,9 @@ const List = () => {
             setNewItem({ ...newItem, ImgUrl: event.target.value });
           }}
         />
+        <h3>Creation date</h3>
         <input
-          type="text"
+          type="date"
           placeholder="Creation date"
           onInput={event => {
             setNewItem({ ...newItem, Date: event.target.value });
@@ -109,13 +112,3 @@ const List = () => {
 };
 
 export default List;
-
-// TO DO APP
-// User can create new todos with info on task, date created, date to be completed and an img url
-// 8:51
-// 2. User can see all their previously made todos
-// 3. User can delete todos
-// Extension:
-// 5. Make it look nice
-// 8:51
-// 6. Hosted live

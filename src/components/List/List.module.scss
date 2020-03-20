@@ -10,6 +10,8 @@
     text-align: center;
     min-height: 200px;
     display: flex;
+    justify-content: left;
+    align-items: center;
     width: 100%;
     padding: 10px;
 
@@ -24,8 +26,10 @@
     }
 
     img {
-      max-width: 200px;
-      max-height: 200px;
+      max-width: 100px;
+      max-height: 100px;
+      object-fit: cover;
+      border-radius: 50px;
     }
   }
 
@@ -36,6 +40,7 @@
     input {
       height: 30px;
       width: 190px;
+      text-align: center;
     }
   }
 

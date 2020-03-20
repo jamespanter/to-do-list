@@ -1,0 +1,11 @@
+* {
+  border: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.dashboardContainer {
+  margin-top: 80px;
+}
+/*# sourceMappingURL=App.module.css.map */

@@ -5,7 +5,6 @@ import List from "../../components/List";
 const Dashboard = () => {
   return (
     <section className={styles.dashboard}>
-      <h2>Items to do</h2>
       <div className={styles.listContainer}>
         <List />
       </div>

@@ -66,46 +66,55 @@ const List = () => {
   const displayInJsx = () => {
     return toDoList.map(item => {
       return (
-        <div className={styles.listItem}>
+        <li className={styles.listItem}>
           <img src={item.ImgUrl} alt="image thumbnail" />
           <h2>{item.Title}</h2>
           <p>{item.Date}</p>
           <button onClick={() => deleteFromDb(item)}>Delete</button>
-        </div>
+        </li>
       );
     });
   };
 
   return (
     <section className={styles.list}>
-      <h2>Add new item to list</h2>
       <div className={styles.inputContainer}>
-        <h3>Title</h3>
-        <input
-          type="text"
-          placeholder="Title"
-          onInput={event => {
-            setNewItem({ ...newItem, Title: event.target.value });
-          }}
-        />
-        <h3>Image url</h3>
-        <input
-          type="text"
-          placeholder="Image url"
-          onInput={event => {
-            setNewItem({ ...newItem, ImgUrl: event.target.value });
-          }}
-        />
-        <h3>Creation date</h3>
-        <input
-          type="date"
-          placeholder="Creation date"
-          onInput={event => {
-            setNewItem({ ...newItem, Date: event.target.value });
-          }}
-        />
+        <div>
+          <label>Title</label>
+          <input
+            type="text"
+            placeholder="item title"
+            onInput={event => {
+              setNewItem({ ...newItem, Title: event.target.value });
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Image URL</label>
+          <input
+            type="text"
+            placeholder="image url"
+            onInput={event => {
+              setNewItem({ ...newItem, ImgUrl: event.target.value });
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Date</label>
+          <input
+            type="text"
+            placeholder="date"
+            onInput={event => {
+              setNewItem({ ...newItem, Date: event.target.value });
+            }}
+          />
+        </div>
+        <button onClick={addToDb}>Add</button>
       </div>
-      <button onClick={addToDb}>Add</button>
+      <h2>To-do's</h2>
+
       {displayInJsx()}
     </section>
   );

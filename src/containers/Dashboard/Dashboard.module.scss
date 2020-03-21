@@ -4,14 +4,16 @@
   flex-direction: column;
   justify-content: left;
   align-items: center;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh);
+  padding-top: 20px;
   width: 100vw;
+  background: url(../../assets/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 
   .listContainer {
-    width: 50%;
-  }
-
-  h2 {
-    font-size: 45px;
+    width: 60%;
+    height: 100%;
+    margin-bottom: 5%;
   }
 }

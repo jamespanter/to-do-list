@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <div className="navbarContainer">
-        <Navbar />
+        {/* <Navbar /> */}
       </div>
       <div className="dashboardContainer">
         <Dashboard />

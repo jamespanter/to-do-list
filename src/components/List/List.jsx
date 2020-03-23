@@ -5,7 +5,11 @@ import { firestore } from "../../firebase.js";
 
 const List = () => {
   const [toDoList, updateList] = useState([]);
-  const [newItem, setNewItem] = useState({});
+  const [newItem, setNewItem] = useState({
+    Title: "New to-do",
+    ImgUrl: "https://i.ya-webdesign.com/images/png-image-clipboard-2.png",
+    Date: "No date"
+  });
 
   useEffect(() => {
     fetchToDoList();
@@ -68,8 +72,13 @@ const List = () => {
       return (
         <>
           <Card style={{ margin: "10px", width: "150px", height: "250px" }}>
-            <Card.Img variant="top" src={item.ImgUrl} alt="thumbnail" />
-            <Card.Body className="text-center">
+            <Card.Img
+              style={{ height: "40%" }}
+              variant="top"
+              src={item.ImgUrl}
+              alt="thumbnail"
+            />
+            <Card.Body style={{ height: "60%" }} className="text-center">
               <Card.Title>{item.Title}</Card.Title>
               <Card.Text>{item.Date}</Card.Text>
               <Button onClick={() => deleteFromDb(item)} variant="danger">

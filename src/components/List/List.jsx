@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./List.module.scss";
-
+import { Card, Button, Form, CardDeck } from "react-bootstrap";
 import { firestore } from "../../firebase.js";
 
 const List = () => {
@@ -66,57 +66,57 @@ const List = () => {
   const displayInJsx = () => {
     return toDoList.map(item => {
       return (
-        <li className={styles.listItem}>
-          <img src={item.ImgUrl} alt="image thumbnail" />
-          <h2>{item.Title}</h2>
-          <p>{item.Date}</p>
-          <button onClick={() => deleteFromDb(item)}>Delete</button>
-        </li>
+        <>
+          <Card style={{ margin: "10px", width: "150px", height: "250px" }}>
+            <Card.Img variant="top" src={item.ImgUrl} alt="thumbnail" />
+            <Card.Body className="text-center">
+              <Card.Title>{item.Title}</Card.Title>
+              <Card.Text>{item.Date}</Card.Text>
+              <Button onClick={() => deleteFromDb(item)} variant="danger">
+                Delete
+              </Button>
+            </Card.Body>
+          </Card>
+        </>
       );
     });
   };
 
   return (
-    <section className={styles.list}>
-      <div className={styles.inputContainer}>
-        <div>
-          <label>Title</label>
-          <input
-            type="text"
+    <>
+      <Form>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Title</Form.Label>
+          <Form.Control
+            type="email"
             placeholder="item title"
             onInput={event => {
               setNewItem({ ...newItem, Title: event.target.value });
             }}
           />
-        </div>
-
-        <div>
-          <label>Image URL</label>
-          <input
-            type="text"
+          <Form.Label>Image URL</Form.Label>
+          <Form.Control
+            type="email"
             placeholder="image url"
             onInput={event => {
               setNewItem({ ...newItem, ImgUrl: event.target.value });
             }}
           />
-        </div>
-
-        <div>
-          <label>Date</label>
-          <input
-            type="text"
+          <Form.Label>Date</Form.Label>
+          <Form.Control
+            type="email"
             placeholder="date"
             onInput={event => {
               setNewItem({ ...newItem, Date: event.target.value });
             }}
           />
-        </div>
-        <button onClick={addToDb}>Add</button>
-      </div>
-      <h2>To-do's</h2>
-
-      {displayInJsx()}
-    </section>
+          <Button onClick={addToDb} variant="success">
+            Add
+          </Button>
+        </Form.Group>
+      </Form>
+      <section style={{ display: "flex" }}>{displayInJsx()}</section>
+    </>
   );
 };
 

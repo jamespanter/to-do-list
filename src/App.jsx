@@ -1,15 +1,22 @@
 import React from "react";
 import logo from "./logo.svg";
 import styles from "./App.module.scss";
-import Navbar from "./components/Navbar";
 import Dashboard from "./containers/Dashboard";
+import { Navbar } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <>
-      <div className="navbarContainer">
-        {/* <Navbar /> */}
-      </div>
+      <Navbar>
+        <Navbar.Brand href="#home">TO-DO LIST</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text>
+            {/* Signed in as: <a href="#login">Mark Otto</a> */}
+          </Navbar.Text>
+        </Navbar.Collapse>
+      </Navbar>
       <div className="dashboardContainer">
         <Dashboard />
       </div>

@@ -7,7 +7,7 @@ const List = () => {
   const [toDoList, updateList] = useState([]);
   const [newItem, setNewItem] = useState({
     Title: "New to-do",
-    ImgUrl: "https://i.ya-webdesign.com/images/png-image-clipboard-2.png",
+    ImgUrl: "https://www.worldipreview.com/media/image/dovapi.jpg",
     Date: "No date"
   });
 
@@ -71,14 +71,17 @@ const List = () => {
     return toDoList.map(item => {
       return (
         <>
-          <Card style={{ margin: "10px", width: "150px", height: "250px" }}>
+          <Card
+            className="bg-light"
+            style={{ margin: "10px", width: "300px", height: "400px" }}
+          >
             <Card.Img
-              style={{ height: "40%" }}
+              style={{ height: "60%", objectFit: "cover" }}
               variant="top"
               src={item.ImgUrl}
               alt="thumbnail"
             />
-            <Card.Body style={{ height: "60%" }} className="text-center">
+            <Card.Body style={{ height: "40%" }} className="text-center">
               <Card.Title>{item.Title}</Card.Title>
               <Card.Text>{item.Date}</Card.Text>
               <Button onClick={() => deleteFromDb(item)} variant="danger">
@@ -93,9 +96,9 @@ const List = () => {
 
   return (
     <>
-      <Form>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Title</Form.Label>
+      <Form className="d-flex justify-content-center text-center">
+        <Form.Group style={{ maxWidth: "300px" }} controlId="formBasicEmail">
+          <Form.Label className="m-0">Title</Form.Label>
           <Form.Control
             type="email"
             placeholder="item title"
@@ -103,7 +106,7 @@ const List = () => {
               setNewItem({ ...newItem, Title: event.target.value });
             }}
           />
-          <Form.Label>Image URL</Form.Label>
+          <Form.Label className="m-0">Image URL</Form.Label>
           <Form.Control
             type="email"
             placeholder="image url"
@@ -111,7 +114,7 @@ const List = () => {
               setNewItem({ ...newItem, ImgUrl: event.target.value });
             }}
           />
-          <Form.Label>Date</Form.Label>
+          <Form.Label className="m-0">Date</Form.Label>
           <Form.Control
             type="email"
             placeholder="date"
@@ -119,7 +122,7 @@ const List = () => {
               setNewItem({ ...newItem, Date: event.target.value });
             }}
           />
-          <Button onClick={addToDb} variant="success">
+          <Button onClick={addToDb} variant="success" className="m-2">
             Add
           </Button>
         </Form.Group>

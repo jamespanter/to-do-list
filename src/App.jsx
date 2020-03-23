@@ -8,15 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <>
-      <Navbar>
-        <Navbar.Brand href="#home">TO-DO LIST</Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            {/* Signed in as: <a href="#login">Mark Otto</a> */}
-          </Navbar.Text>
-        </Navbar.Collapse>
-      </Navbar>
+      <nav class="navbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1">Navbar</span>
+      </nav>
       <div className="dashboardContainer">
         <Dashboard />
       </div>

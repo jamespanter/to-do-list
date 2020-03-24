@@ -48,7 +48,7 @@ function App() {
         alert("You have signed out");
       })
       .catch(error => {
-        alert("Oh no an error :(");
+        alert("Oh no an error :(" + error);
       });
   };
 

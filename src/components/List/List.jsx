@@ -30,6 +30,7 @@ const List = props => {
           console.log(err);
         });
     }
+    updateList(null);
   };
 
   const addToDb = () => {
@@ -70,30 +71,32 @@ const List = props => {
   };
 
   const displayInJsx = () => {
-    return toDoList.map(item => {
-      return (
-        <>
-          <Card
-            className="bg-light"
-            style={{ margin: "10px", width: "300px", height: "400px" }}
-          >
-            <Card.Img
-              style={{ height: "60%", objectFit: "cover" }}
-              variant="top"
-              src={item.ImgUrl}
-              alt="thumbnail"
-            />
-            <Card.Body style={{ height: "40%" }} className="text-center">
-              <Card.Title>{item.Title}</Card.Title>
-              <Card.Text>{item.Date}</Card.Text>
-              <Button onClick={() => deleteFromDb(item)} variant="danger">
-                Delete
-              </Button>
-            </Card.Body>
-          </Card>
-        </>
-      );
-    });
+    if (toDoList !== null) {
+      return toDoList.map(item => {
+        return (
+          <>
+            <Card
+              className="bg-light"
+              style={{ margin: "10px", width: "300px", height: "400px" }}
+            >
+              <Card.Img
+                style={{ height: "60%", objectFit: "cover" }}
+                variant="top"
+                src={item.ImgUrl}
+                alt="thumbnail"
+              />
+              <Card.Body style={{ height: "40%" }} className="text-center">
+                <Card.Title>{item.Title}</Card.Title>
+                <Card.Text>{item.Date}</Card.Text>
+                <Button onClick={() => deleteFromDb(item)} variant="danger">
+                  Delete
+                </Button>
+              </Card.Body>
+            </Card>
+          </>
+        );
+      });
+    }
   };
 
   return (

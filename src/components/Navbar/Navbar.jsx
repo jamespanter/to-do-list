@@ -1,12 +1,29 @@
 import React from "react";
 import styles from "./Navbar.module.scss";
 
-const Navbar = () => {
+const Navbar = props => {
+  const { title, signOut, signInWithRedirect, user } = props;
+
+  const getSignInButtons = () => {
+    if (user) {
+      return (
+        <>
+          <div>
+            <img src={user.photoURL} alt={`${user.displayName}'s Face`} />
+            <button onClick={signOut}>Sign-out</button>
+          </div>
+        </>
+      );
+    } else {
+      return <button onClick={signInWithRedirect}>Sign-in</button>;
+    }
+  };
+
   return (
     <>
-      <nav className={styles.nav}>
-        <h1>GET THINGS DONE</h1>
-        <p>Login</p>
+      <nav class="navbar navbar-light bg-info">
+        <span class="navbar-brand mb-0 h1">{title}</span>
+        {getSignInButtons()}
       </nav>
     </>
   );

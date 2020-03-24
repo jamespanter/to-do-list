@@ -9,6 +9,7 @@ const Navbar = props => {
       return (
         <>
           <div>
+            <p>Welcome {user.displayName}</p>
             <img src={user.photoURL} alt={`${user.displayName}'s Face`} />
             <button onClick={signOut}>Sign-out</button>
           </div>

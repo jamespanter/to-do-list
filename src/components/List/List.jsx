@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./List.module.scss";
-import { Card, Button, Form, CardDeck } from "react-bootstrap";
+import { Card, Button, Form } from "react-bootstrap";
 import { firestore } from "../../firebase.js";
 
-const List = () => {
+const List = props => {
+  const { user } = props;
   const [toDoList, updateList] = useState([]);
   const [newItem, setNewItem] = useState({
     Title: "New to-do",
@@ -13,28 +14,29 @@ const List = () => {
 
   useEffect(() => {
     fetchToDoList();
-  }, []);
+  }, [user]);
 
   const fetchToDoList = () => {
-    firestore
-      .collection("users")
-      .doc("0qy4ME2XQdSPstRPSlxL")
-      .get()
-      .then(doc => {
-        const retrievedItem = doc.data().toDoList;
-        console.log(retrievedItem);
-        updateList(retrievedItem);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if (user) {
+      firestore
+        .collection("users")
+        .doc(user.uid)
+        .get()
+        .then(doc => {
+          const retrievedItem = doc.data().toDoList;
+          updateList(retrievedItem);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   };
 
   const addToDb = () => {
     const newItems = [newItem, ...toDoList];
     firestore
       .collection("users")
-      .doc("0qy4ME2XQdSPstRPSlxL")
+      .doc(user.uid)
       .set({
         toDoList: newItems
       })
@@ -57,7 +59,7 @@ const List = () => {
 
     firestore
       .collection("users")
-      .doc("0qy4ME2XQdSPstRPSlxL")
+      .doc(user.uid)
       .set(newDoc)
       .then(() => {
         fetchToDoList();

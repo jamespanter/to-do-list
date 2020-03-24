@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
 import styles from "./App.module.scss";
 import Dashboard from "./containers/Dashboard";
 import Navbar from "./components/Navbar";
@@ -66,7 +65,7 @@ function App() {
         user={user}
       />
       <div className="dashboardContainer">
-        <Dashboard />
+        <Dashboard user={user} />
       </div>
     </>
   );

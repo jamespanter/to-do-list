@@ -2,11 +2,12 @@ import React from "react";
 import styles from "./Dashboard.module.scss";
 import List from "../../components/List";
 
-const Dashboard = () => {
+const Dashboard = props => {
+  const { user } = props;
   return (
     <section className={styles.dashboard}>
       <div className={styles.listContainer}>
-        <List />
+        <List user={user} />
       </div>
     </section>
   );

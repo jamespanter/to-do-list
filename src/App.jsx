@@ -3,17 +3,21 @@ import styles from "./App.module.scss";
 import Dashboard from "./containers/Dashboard";
 import Navbar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Modal, Button } from "react-bootstrap";
 
 import firebase, { provider } from "./firebase";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isShown, toggleShown] = useState(false);
 
   const signInWithRedirect = () => {
     firebase.auth().signInWithRedirect(provider);
   };
 
   const getUser = () => {
+    toggleShown(!isShown);
+
     firebase
       .auth()
       .getRedirectResult()
@@ -40,6 +44,8 @@ function App() {
   };
 
   const signOut = () => {
+    toggleShown(!isShown);
+
     firebase
       .auth()
       .signOut()
@@ -52,11 +58,32 @@ function App() {
       });
   };
 
+  const displayLoadingBox = isShown ? (
+    <div className={styles.loadingBox}>
+      <h3>Loading...please wait...</h3>
+      <div className={styles.loader}></div>
+    </div>
+  ) : (
+    <>
+      <Modal.Header className="justify-content-center">
+        <Modal.Title className="text-center">Login</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p className="m-0 text-center">
+          Please login with google to see your custom to-do list
+        </p>
+      </Modal.Body>
+      <Button variant="success" onClick={signInWithRedirect}>
+        Login
+      </Button>
+    </>
+  );
+
   useEffect(() => {
     getUser();
   }, []);
 
-  return (
+  return user ? (
     <>
       <Navbar
         title="To-do List"
@@ -68,6 +95,14 @@ function App() {
         <Dashboard user={user} />
       </div>
     </>
+  ) : (
+    <div className={styles.loginContainer}>
+      <Modal.Dialog>
+        <Modal.Footer className="justify-content-center">
+          {displayLoadingBox}
+        </Modal.Footer>
+      </Modal.Dialog>
+    </div>
   );
 }
 

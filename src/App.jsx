@@ -7,17 +7,19 @@ import { Modal, Button } from "react-bootstrap";
 
 import firebase, { provider } from "./firebase";
 
-function App() {
+const App = () => {
   const [user, setUser] = useState(null);
   const [isShown, toggleShown] = useState(false);
 
   const signInWithRedirect = () => {
+    sessionStorage.setItem("showLoading", true);
     firebase.auth().signInWithRedirect(provider);
   };
 
   const getUser = () => {
-    toggleShown(!isShown);
-
+    if (sessionStorage.getItem("showLoading") === "true") {
+      toggleShown(true);
+    }
     firebase
       .auth()
       .getRedirectResult()
@@ -27,7 +29,6 @@ function App() {
           const token = result.credential.accessToken;
         }
         // The signed-in user info.
-        console.log(result);
         const user = result.user;
         setUser(user);
       })
@@ -44,7 +45,7 @@ function App() {
   };
 
   const signOut = () => {
-    toggleShown(!isShown);
+    toggleShown(false);
 
     firebase
       .auth()
@@ -103,6 +104,6 @@ function App() {
       </Modal.Dialog>
     </div>
   );
-}
+};
 
 export default App;

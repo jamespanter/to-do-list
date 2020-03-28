@@ -51,7 +51,6 @@ function App() {
       .signOut()
       .then(() => {
         setUser(null);
-        alert("You have signed out");
       })
       .catch(error => {
         alert("Oh no an error :(" + error);

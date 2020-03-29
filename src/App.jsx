@@ -63,13 +63,13 @@ const App = () => {
 
   const displayLoadingBox = isShown ? (
     <div className={styles.loadingBox}>
-      <h3>Loading...please wait...</h3>
+      <h3 className="text-center">Loading...please wait...</h3>
       <div className={styles.loader}></div>
     </div>
   ) : (
     <>
       <Modal.Header className="justify-content-center">
-        <Modal.Title className="text-center">Login</Modal.Title>
+        <Modal.Title className="text-center">To-do List</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p className="m-0 text-center">

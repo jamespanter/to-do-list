@@ -29,7 +29,7 @@ const Navbar = props => {
 
   return (
     <>
-      <nav class="navbar navbar-light bg-info">
+      <nav class="navbar fixed-top navbar-light bg-info">
         <span class="navbar-brand mb-0 h1">{title}</span>
         {getSignInButtons()}
       </nav>

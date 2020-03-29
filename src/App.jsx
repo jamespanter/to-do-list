@@ -19,7 +19,9 @@ const App = () => {
   const getUser = () => {
     if (sessionStorage.getItem("showLoading") === "true") {
       toggleShown(true);
+      setTimeout(() => (user ? null : toggleShown(false)), 5000);
     }
+
     firebase
       .auth()
       .getRedirectResult()
@@ -46,6 +48,7 @@ const App = () => {
 
   const signOut = () => {
     toggleShown(false);
+    sessionStorage.removeItem("showLoading", true);
 
     firebase
       .auth()
@@ -74,7 +77,7 @@ const App = () => {
         </p>
       </Modal.Body>
       <Button variant="success" onClick={signInWithRedirect}>
-        Login
+        Login with google
       </Button>
     </>
   );

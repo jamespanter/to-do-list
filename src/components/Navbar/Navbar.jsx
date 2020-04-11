@@ -9,12 +9,14 @@ const Navbar = (props) => {
     if (user) {
       return (
         <>
-          <div>
+          <div className={styles.details}>
             <p>Welcome {user.displayName}</p>
-            <img src={user.photoURL} alt={`${user.displayName}'s Face`} />
-            <Button onClick={signOut} variant="danger">
-              Sign Out
-            </Button>
+            <div>
+              <img src={user.photoURL} alt={`${user.displayName}'s Face`} />
+              <Button onClick={signOut} variant="danger">
+                Sign Out
+              </Button>
+            </div>
           </div>
         </>
       );

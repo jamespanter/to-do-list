@@ -12,43 +12,37 @@ const App = () => {
   const [isShown, toggleShown] = useState(false);
 
   const signInWithRedirect = () => {
-    sessionStorage.setItem("showLoading", true);
+    // sessionStorage.setItem("showLoading", true);
     firebase.auth().signInWithRedirect(provider);
   };
 
   const getUser = () => {
-    if (sessionStorage.getItem("showLoading") === "true") {
-      toggleShown(true);
-      setTimeout(() => (user ? null : toggleShown(false)), 5000);
-    }
+    // if (sessionStorage.getItem("showLoading") === "true") {
+    //   toggleShown(true);
+    //   setTimeout(() => (user ? null : toggleShown(false)), 3000);
+    // }
 
     firebase
       .auth()
       .getRedirectResult()
-      .then(result => {
+      .then((result) => {
         if (result.credential) {
-          // This gives you a Google Access Token. You can use it to access the Google API.
           const token = result.credential.accessToken;
         }
-        // The signed-in user info.
         const user = result.user;
         setUser(user);
       })
-      .catch(error => {
-        // Handle Errors here.
+      .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
         const email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
         const credential = error.credential;
-        // ...
       });
   };
 
   const signOut = () => {
-    toggleShown(false);
-    sessionStorage.removeItem("showLoading", true);
+    // toggleShown(false);
+    // sessionStorage.removeItem("showLoading", true);
 
     firebase
       .auth()
@@ -56,7 +50,7 @@ const App = () => {
       .then(() => {
         setUser(null);
       })
-      .catch(error => {
+      .catch((error) => {
         alert("Oh no an error :(" + error);
       });
   };

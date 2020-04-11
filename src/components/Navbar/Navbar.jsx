@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Navbar.module.scss";
 import { Button } from "react-bootstrap";
 
-const Navbar = props => {
+const Navbar = (props) => {
   const { title, signOut, signInWithRedirect, user } = props;
 
   const getSignInButtons = () => {
@@ -29,8 +29,13 @@ const Navbar = props => {
 
   return (
     <>
-      <nav class="navbar fixed-top navbar-light bg-info">
-        <span class="navbar-brand mb-0 h1">{title}</span>
+      <nav className="navbar fixed-top navbar-light bg-info">
+        <span
+          className="navbar-brand mb-0 h1 text-danger"
+          style={{ fontSize: "32px", fontWeight: "500" }}
+        >
+          {title}
+        </span>
         {getSignInButtons()}
       </nav>
     </>

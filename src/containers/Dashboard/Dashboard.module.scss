@@ -5,9 +5,8 @@
   justify-content: left;
   align-items: center;
   min-height: calc(100vh);
-  background: url(../../assets/background.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: linear-gradient(rgba(90, 88, 88, 0.5), rgba(63, 62, 62, 0.5)),
+    url(../../assets/background2.jpg);
   padding-top: 100px;
 
   .listContainer {
@@ -15,6 +14,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
